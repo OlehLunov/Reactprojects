@@ -5,11 +5,11 @@ import List from "../list/List"
 const Info = [
   {
       img : "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-      name : "Sofia Cooper", birthday : "1995-01-31"
+      name : "Sofia Cooper", birthday : "1995-06-31"
   },
   {
       img : "https://images.unsplash.com/photo-1503185912284-5271ff81b9a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-      name : "Miller Wright", birthday : "1998-05-29"
+      name : "Miller Wright", birthday : "1998-01-04"
   },
   {
       img : "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
@@ -29,6 +29,36 @@ const Info = [
   }
 ]
 
+function Today (person){
+  let currentDay = new Date().getDate();
+  let currentMonth = new Date().getMonth();
+
+  
+  let filter = person.filter(data=>{
+    let day = new Date(data.birthday).getDate();
+    let month = new Date(data.birthday).getMonth();
+
+    return currentDay == day && currentMonth == month;
+  })
+  return filter;
+}
+
+function Upcoming(person, toMonth){
+    let currentMonth = new Date().getMonth();
+    let currentDay = new Date().getDate();
+
+    let filter = person.filter(data=>{
+      let month = new Date(data.birthday).getMonth();
+      let day = new Date(data.birthday).getDate();
+
+      if(currentDay == day) return;
+
+      return month >= currentMonth && month <= currentMonth + toMonth;
+    })
+    return filter;
+}
+
+
 
 export default function board() {
   return (
@@ -36,8 +66,11 @@ export default function board() {
         <h1 className="text-dark title">Birhday Reminder</h1>
 
         <div className="board">
-            <List info={Info}  />
+            <List info={Today(Info)}  />
+            <h2 className='upcoming text-dark'>Upcoming</h2>
+            <List info={Upcoming(Info, 2)} upcoming = {true} />
         </div>
     </main>
   )
 }
+

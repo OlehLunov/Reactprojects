@@ -5,20 +5,12 @@
     margin: 0;
 }
 
-body{
-    --color-dark: #343a40;
-    --color-light: #f5f3f4;
-    --panelColor: #ffe66d;
-    --active: #06d6a0;
-}
-
 #site-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 2em;
 }
 
 #site-main .board{

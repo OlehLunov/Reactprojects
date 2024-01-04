@@ -1,8 +1,9 @@
 import React from 'react'
 import "./List.css"
 
-function iterate(data){
+function iterate(data, flag){
     if (!data) return;
+    const bgColor = flag ? {backgroundColor: "#ffe66d"} : {};
     return(
         <>
             {
@@ -10,7 +11,7 @@ function iterate(data){
            
                     return (
                         <li key={index}>
-                            <div className="flex">
+                            <div className="flex" style={bgColor}>
                                 <img src={person.img} alt="img" />
                                 <div className="title">
                                     <h3 className='name'>{person.name}</h3>
@@ -25,7 +26,6 @@ function iterate(data){
     )
 }
 
-
 function Old(personAge){
     let year = new Date(personAge).getFullYear()
     let currentYear =  new Date().getFullYear();
@@ -34,14 +34,10 @@ function Old(personAge){
     return age;
 }
 
-
-
-
-
-export default function List({info}) {
+export default function List({info, upcoming}) {
   return (
         <ul>
-            {iterate(info)}
+            {iterate(info, upcoming)}
         </ul>
   )
 }
