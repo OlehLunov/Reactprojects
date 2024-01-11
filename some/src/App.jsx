@@ -1,13 +1,12 @@
 import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
 
 
 export default function App() {
   return (
-    <div className="container">
+    <div>
       <Header />
-      <main>
-        <h1>Hellio</h1>
-      </main>
+      <Main />
     </div>
   );
 }
